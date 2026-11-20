@@ -19,7 +19,7 @@ class InventoryManager:
                 return True
             return False
 
-    def find_product(self, product_id: str) -> Product | None:
+    def find_product(self, product_id: str) -> "Product | None":
         for product in self._products:
             if product.product_id.lower() == product_id.lower():
                 return product
