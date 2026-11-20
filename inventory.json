@@ -1,0 +1,28 @@
+[
+    {
+        "id": "P001",
+        "name": "Self Help Ebook",
+        "price": 12.0,
+        "stock": 35,
+        "supplier": {
+            "supplier_id": "S001",
+            "name": "Pixel Art Publisher",
+            "contact_email": "pixelart@mail.com"
+        },
+        "type": "digital",
+        "download_size": 100.0
+    },
+    {
+        "id": "P011",
+        "name": "Tablet",
+        "price": 550.0,
+        "stock": 17,
+        "supplier": {
+            "supplier_id": "S121",
+            "name": "Goody Mobile",
+            "contact_email": "goodymobile@mail.com"
+        },
+        "type": "physical",
+        "weight": 30.0
+    }
+]
