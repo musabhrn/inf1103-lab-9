@@ -2,6 +2,7 @@ from inventory_manager import InventoryManager
 from product import PhysicalProduct, DigitalProduct
 from supplier import Supplier
 from order import Order
+from product_factory import ProductFactory
 
 def display_menu():
     print("=" * 35)
@@ -38,21 +39,25 @@ def main():
             name = input("Enter Name: ").strip()
             price = float(input("Enter Price: "))
             stock = int(input("Enter Stock: "))
-            
+
             sup_id = input("Enter Supplier ID: ").strip()
             sup_name = input("Enter Supplier Name: ").strip()
             sup_email = input("Enter Supplier Email: ").strip()
             supplier = Supplier(sup_id, sup_name, sup_email)
 
+            weight = 0.0
+            download_size = 0.0
             if prod_type == "physical":
                 weight = float(input("Enter Weight (kg): "))
-                product = PhysicalProduct(p_id, name, price, stock, supplier, weight)
             elif prod_type == "digital":
                 download_size = float(input("Enter Download Size (MB): "))
-                product = DigitalProduct(p_id, name, price, stock, supplier, download_size)
-            else:
-                print("Invalid type. Defaulting to physical product.")
-                product = PhysicalProduct(p_id, name, price, stock, supplier, 0.0)
+
+            try:
+                product = ProductFactory.create(prod_type, p_id, name, price, stock, supplier,
+                                                weight, download_size)
+            except ValueError as e:
+                print(f"{e}. Product not added.\n")
+                continue
 
             manager.add_product(product)
             print(f"Product '{product.name}' added successfully to inventory.\n")
